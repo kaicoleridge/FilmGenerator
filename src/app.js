@@ -53,11 +53,13 @@
     console.log("                                                        ")
     console.log("🎥 Welcome to the Movie Randomiser 🎥")
     console.log("                                                        ")
+    console.log("********************************************************")
 
+  
 
-
-
-    randomFilmGenerate(movies);
+    setTimeout(function(){
+    randomFilmGenerate(movies);    
+}, 3000);                                
 
     function randomFilmGenerate(movies){
         var randomElement = Math.floor(Math.random()*movies.length);
@@ -80,7 +82,7 @@
         
 
     async function askUser(){
-        const userInput = await prompt("Would you like to generate another movie? (y/n): ");
+        const userInput = await prompt("Would you like to generate a movie suggestion? (y/n): ");
             
         if(userInput === "y" || userInput === "Y"){
             randomFilmGenerate(movies);
@@ -95,7 +97,10 @@
                 movies.push(userInput);
                 console.log("Movie added to list ✅");
                 console.log(movies.at(movies.length-1)+" has been added to the list.");
-            }else if(userInput === "exit" || userInput === "EXIT".toLocaleLowerCase()){
+                printMovies(movies);
+            
+
+            }else if(userInput === "exit" || userInput === "EXIT"){
                     console.log("********************************************************")
                     console.log("👋 Goodbye! 👋")
                     console.log("********************************************************")
@@ -106,4 +111,8 @@
             console.log("❌ INAVLID OPTION ❌")
         }
     }
+}
+
+function printMovies(movies){
+    console.log(movies);
 }
